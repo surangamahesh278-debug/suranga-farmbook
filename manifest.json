@@ -1,0 +1,18 @@
+{
+  "id": "./",
+  "name": "Suranga FarmBook",
+  "short_name": "FarmBook",
+  "description": "Farm Management & Expense Records",
+  "lang": "en-LK",
+  "start_url": "./index.html#dashboard",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#244d35",
+  "background_color": "#f3f5ef",
+  "icons": [
+    {"src":"./icon-192.png","sizes":"192x192","type":"image/png","purpose":"any"},
+    {"src":"./icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"},
+    {"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}
+  ]
+}
