@@ -2,7 +2,7 @@
 
 **Farm Management & Expense Records** · Owner: Suranga
 
-Suranga FarmBook is a static Progressive Web App. Farm, expense, income and settings records stay in the browser's local storage on each device. The public website hosts only the app files; it does not receive or synchronize farm records.
+Suranga FarmBook is a static Progressive Web App. Farm, expense, income and settings records continue to save in the browser's local storage. Optional cloud sync uses Supabase Auth and PostgreSQL, with an IndexedDB offline queue and revision checks. No record is uploaded until a signed-in user reviews and confirms the migration preview. JSON backup and restore remain available independently.
 
 ## Open locally on Windows
 
@@ -58,8 +58,23 @@ On iPhone or iPad, open the HTTPS address in Safari, tap **Share**, then **Add t
 2. Open the public HTTPS app on the destination device.
 3. In **Settings & Backup**, choose **Import Backup (JSON)** and select the file. Import replaces records on that destination device after a confirmation prompt. Export a backup of its current data first if you need to keep it.
 
-The public website does not copy records from the local `localhost` version automatically. Each browser and website address has separate storage. To move existing local records to the public copy, export the JSON from the local app and import it into the public app. Do not commit or upload the backup JSON file to the website repository. CSV exports contain expenses only and are not a full backup.
+The public website does not copy records from the local `localhost` version automatically. Each browser and website address has separate storage. To move existing local records to the public copy, export JSON from the local app and import it into the public app. Do not commit or upload the backup JSON file to the website repository. CSV exports contain expenses only and are not a full backup.
+
+## Optional two-device cloud sync
+
+Cloud sync requires the Supabase project already configured for this FarmBook. The browser uses only the project's publishable key in `supabase-config.js`; this key is designed to be public. **Never put a database password, secret key, or `service_role` key in this project.** PostgreSQL writes go through authenticated functions and the supplied SQL enables Row Level Security. If you use a public GitHub repository, the publishable key will be visible by design; protect the database through the SQL policies and Auth, not by treating that key as secret.
+
+Before using sync, in the Supabase Dashboard:
+
+1. Open **SQL Editor**, paste and run `supabase/migrations/001_farmbook_sync.sql` once. It creates the tables, owner-only policies and conflict-aware sync functions. It does not insert FarmBook records.
+2. Under **Authentication → URL Configuration**, add the deployed FarmBook HTTPS address (including its path, such as `https://name.github.io/suranga-farmbook/`) to the allowed redirect/site URLs.
+3. Under **Authentication → Providers → Email**, configure the sign-up/email confirmation behavior you want. For dependable production account confirmation emails, configure a trusted SMTP provider in Supabase.
+4. Deploy the updated root app files through the existing GitHub Pages workflow.
+
+Then open FarmBook on the laptop and go to **Settings & Backup → Sync between your devices**. Create an account or sign in. If the device has local records, FarmBook displays record counts, record IDs, a list of records and the exact JSON snapshot before upload. Choose **Confirm this snapshot and begin sync** only after reviewing it. Same-ID differences become explicit conflicts; choose which version to keep. If using an exported backup, choose **Preview a JSON backup for migration** first. This adds records by their existing IDs for review and does not replace the current device data. On the phone, open the same HTTPS app, sign in to the same account, and approve the cloud data when prompted. Later offline edits queue locally and synchronize when connected.
+
+Keep using **Export backup (JSON)** as a separate backup. The sync database is not a replacement for that file. Avoid signing different people's farm records into one shared account; one account represents one FarmBook data owner.
 
 ## Privacy and data safety
 
-FarmBook does not require an account, send records to an external server or synchronize devices. Records are saved in the current browser on the current device. Clearing browser site data, using private browsing or changing browser profiles can remove or hide them, so keep regular JSON backups. The hosted files contain the application, not your records.
+FarmBook's local expense-recording features do not require an account or internet connection. If optional cloud sync is enabled, the records you approve are stored in your Supabase project and synchronized to signed-in devices. Local browser storage remains in place. Clearing browser site data, using private browsing or changing browser profiles can remove or hide local records and the offline queue, so keep regular JSON backups.

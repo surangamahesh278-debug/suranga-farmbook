@@ -1,6 +1,7 @@
 (() => {
  'use strict';
  const KEYS={expenses:'fieldbook-expenses-v1',farms:'suranga-farmbook-farms-v1',income:'suranga-farmbook-income-v1',settings:'suranga-farmbook-settings-v1'};
+ const legacyStorageSnapshot=Object.fromEntries(Object.entries(KEYS).map(([name,key])=>[name,localStorage.getItem(key)]));
  const $=id=>document.getElementById(id), esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const dateNow=()=>{const d=new Date(),off=d.getTimezoneOffset();return new Date(d.getTime()-off*60000).toISOString().slice(0,10)};
  const read=(k,def)=>{try{const x=JSON.parse(localStorage.getItem(k)||'null');return x??def}catch{return def}};
@@ -10,7 +11,8 @@
  // stored on expenses and income, so only add lifecycle metadata to old farms.
  farms=farms.map((f,i)=>({...f,id:String(f.id||`legacy-farm-${i}`),status:f.status==='completed'?'completed':'active',startedAt:f.startedAt||f.createdAt||Date.now(),completedAt:f.completedAt||''}));
  expenses=expenses.map((r,i)=>({...r,id:String(r.id||`legacy-${i}-${r.date||''}`),total:Number(r.total??Number(r.quantity||0)*Number(r.unitPrice||0)),createdAt:Number(r.createdAt||Date.now()),farmId:r.farmId||'',crop:r.crop||'',batch:r.batch||''}));
- const save=()=>{localStorage.setItem(KEYS.expenses,JSON.stringify(expenses));localStorage.setItem(KEYS.farms,JSON.stringify(farms));localStorage.setItem(KEYS.income,JSON.stringify(incomes));localStorage.setItem(KEYS.settings,JSON.stringify(settings));};
+ incomes=incomes.map((r,i)=>({...r,id:String(r.id||`legacy-income-${i}-${r.date||''}`),farmId:r.farmId||''}));
+ const save=(options={})=>{localStorage.setItem(KEYS.expenses,JSON.stringify(expenses));localStorage.setItem(KEYS.farms,JSON.stringify(farms));localStorage.setItem(KEYS.income,JSON.stringify(incomes));localStorage.setItem(KEYS.settings,JSON.stringify(settings));window.FarmBookCloudSync?.onLocalSave({expenses,farms,incomes,settings},options);};
  save();
  const cash=n=>'Rs. '+Number(n||0).toLocaleString('en-LK',{minimumFractionDigits:2,maximumFractionDigits:2});
  const dateText=s=>{if(!s)return '—';const [y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d).toLocaleDateString('en-LK',{day:'2-digit',month:'short',year:'numeric'})};
@@ -84,4 +86,5 @@
  window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;installButtons();});window.addEventListener('appinstalled',()=>{deferredInstall=null;installButtons();toast('App installed successfully');});$('install-button').addEventListener('click',installApp);$('install-button-desktop').addEventListener('click',installApp);$('settings-install').addEventListener('click',installApp);
  $('dashboard-cultivations').addEventListener('click',e=>{const b=e.target.closest('[data-action="dashboard-view-cultivation"]');if(!b)return;currentView('cultivations');renderCultivationDetail(farmFor(b.dataset.id));});
  $('today-label').textContent=new Date().toLocaleDateString('en-LK',{weekday:'short',day:'numeric',month:'short',year:'numeric'});const nav=location.hash.slice(1);if(['dashboard','cultivations','expenses','income','reports','settings'].includes(nav))currentView(nav);if('serviceWorker'in navigator&&/^https?:$/.test(location.protocol))navigator.serviceWorker.register('./sw.js').then(()=>{$('connectivity-label').textContent='Offline ready';}).catch(()=>{});window.addEventListener('online',()=>$('connectivity-label').textContent='Online · local records');window.addEventListener('offline',()=>$('connectivity-label').textContent='Offline · ready');renderAll();
+ window.FarmBookCloudSync?.attach({getSnapshot:()=>({expenses,farms,incomes,settings}),getLegacySnapshot:()=>legacyStorageSnapshot,applySnapshot:(s,options={})=>{expenses=Array.isArray(s.expenses)?s.expenses:[];farms=Array.isArray(s.farms)?s.farms:[];incomes=Array.isArray(s.incomes)?s.incomes:[];settings=s.settings||settings;save({...options,fromSync:true});renderAll();}});
 })();
