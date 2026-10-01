@@ -27,20 +27,14 @@ jobs:
         uses: actions/checkout@v6
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
+      - name: Prepare Pages files
+        run: |
+          mkdir -p _site
+          cp index.html styles.css app.js sync.js supabase-config.js manifest.json sw.js icon.svg icon-192.png icon-512.png _site/
       - name: Upload FarmBook root app files
         uses: actions/upload-pages-artifact@v4
         with:
-          path: |
-            index.html
-            styles.css
-            app.js
-            sync.js
-            supabase-config.js
-            manifest.json
-            sw.js
-            icon.svg
-            icon-192.png
-            icon-512.png
+          path: _site/
       - name: Publish website
         id: deployment
         uses: actions/deploy-pages@v4
