@@ -72,10 +72,20 @@
     try { value = text ? JSON.parse(text) : null; } catch { value = text; }
     if (!response.ok) {
       const message = value?.msg || value?.message || value?.error_description || value?.error || `Cloud request failed (${response.status}).`;
-      const error = new Error(message); error.status = response.status; error.details = value; throw error;
+      const error = new Error(message); error.status = response.status; error.details = value;
+      const retryAfter = Number(response.headers.get('retry-after'));
+      if (Number.isFinite(retryAfter) && retryAfter > 0) error.retryAfterMs = retryAfter * 1000;
+      throw error;
     }
     return value;
   }
+
+  // The app uses its existing configured Auth REST helper instead of adding
+  // a CDN/SDK dependency, while matching Supabase's auth.resend interface.
+  const supabase = { auth: { resend: ({ type, email }) => {
+    if (type !== 'signup') throw new Error('Only signup confirmation resend is supported here.');
+    return api('/auth/v1/resend', { method: 'POST', auth: false, body: { type, email } });
+  } } };
 
   function normalizeSession(value) {
     if (!value?.access_token || !value?.refresh_token) return null;
@@ -627,6 +637,36 @@
     $('cloud-create-account')?.addEventListener('click', async () => {
       try { await login($('cloud-email').value.trim(), $('cloud-password').value, true); }
       catch (error) { setStatus(`Account setup failed: ${error.message}`, 'error'); }
+    });
+    $('cloud-resend-confirmation')?.addEventListener('click', async (event) => {
+      const button = event.currentTarget;
+      const emailInput = $('cloud-email');
+      const email = emailInput.value.trim();
+      if (!emailInput.checkValidity()) { emailInput.reportValidity(); return; }
+      const cooldownKey = `farmbook-signup-resend-until:${email.toLowerCase()}`;
+      const currentUntil = Number(sessionStorage.getItem(cooldownKey) || 0);
+      if (currentUntil > Date.now()) {
+        setStatus(`Please wait ${Math.ceil((currentUntil - Date.now()) / 1000)} seconds before requesting another confirmation email.`, 'review');
+        return;
+      }
+      const cooldownUntil = Date.now() + 60_000;
+      sessionStorage.setItem(cooldownKey, String(cooldownUntil));
+      button.disabled = true;
+      const originalText = button.textContent;
+      const cooldownTimer = setInterval(() => {
+        const remaining = Math.max(0, Number(sessionStorage.getItem(cooldownKey) || 0) - Date.now());
+        if (remaining <= 0) { clearInterval(cooldownTimer); button.disabled = false; button.textContent = originalText; }
+        else button.textContent = `Wait ${Math.ceil(remaining / 1000)}s to resend`;
+      }, 1000);
+      button.textContent = 'Requesting email…';
+      try {
+        await supabase.auth.resend({ type: 'signup', email });
+        setStatus('If a signup confirmation is pending for this email, a new message has been requested. Check your inbox and spam folder.', 'review');
+      } catch (error) {
+        if (error.retryAfterMs > 60_000) sessionStorage.setItem(cooldownKey, String(Date.now() + error.retryAfterMs));
+        if (error.status === 429) setStatus(`Supabase is limiting confirmation emails. Please wait before trying again. ${error.message}`, 'error');
+        else setStatus(`Could not request a confirmation email: ${error.message}`, 'error');
+      }
     });
     $('cloud-sync-now')?.addEventListener('click', syncNow);
     $('cloud-sign-out')?.addEventListener('click', logout);
