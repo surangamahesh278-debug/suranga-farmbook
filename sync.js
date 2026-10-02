@@ -7,7 +7,7 @@
 
   const cfg = window.FARMBOOK_SUPABASE_CONFIG || {};
   const DB_NAME = 'suranga-farmbook-sync-v1';
-  const DB_VERSION = 1;
+  const DB_VERSION = 2;
   const stores = ['meta', 'records', 'mirror', 'outbox', 'conflicts'];
   const $ = (id) => document.getElementById(id);
   const copy = (v) => JSON.parse(JSON.stringify(v));
@@ -22,9 +22,15 @@
       request.onupgradeneeded = () => {
         const d = request.result;
         for (const name of stores) if (!d.objectStoreNames.contains(name)) d.createObjectStore(name, { keyPath: 'key' });
-        d.objectStore('outbox').createIndex('createdAt', 'createdAt');
+        const outbox = request.transaction.objectStore('outbox');
+        if (!outbox.indexNames.contains('createdAt')) outbox.createIndex('createdAt', 'createdAt');
       };
-      request.onsuccess = () => resolve(request.result);
+      request.onblocked = () => setStatus('Sync storage upgrade is waiting for another FarmBook tab to close. Close the other tab; this upgrade will continue automatically. Your saved records are unchanged.', 'review');
+      request.onsuccess = () => {
+        const connection = request.result;
+        connection.onversionchange = () => connection.close();
+        resolve(connection);
+      };
       request.onerror = () => reject(request.error || new Error('Could not open the local sync store.'));
     });
   }

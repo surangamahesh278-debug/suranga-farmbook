@@ -1,4 +1,4 @@
-const CACHE_NAME = 'suranga-farmbook-v17';
+const CACHE_NAME = 'suranga-farmbook-v18';
 const APP_FILES = [
   './',
   './index.html',
