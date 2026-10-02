@@ -9,6 +9,7 @@
   const DB_NAME = 'suranga-farmbook-sync-v1';
   const DB_VERSION = 2;
   const stores = ['meta', 'records', 'mirror', 'outbox', 'conflicts'];
+  const AUTH_REDIRECT_URL = cfg.redirectUrl || 'https://surangamahesh278-debug.github.io/suranga-farmbook/';
   const $ = (id) => document.getElementById(id);
   const copy = (v) => JSON.parse(JSON.stringify(v));
   const keyFor = (entity, id) => `${entity}:${id}`;
@@ -62,6 +63,16 @@
     else if (chip && mode === 'offline') chip.textContent = 'Offline · changes queued';
   }
 
+  function showAuthNotice(message, mode = 'review') {
+    setStatus(message, mode);
+    const toast = $('toast');
+    if (toast) {
+      toast.textContent = message;
+      toast.classList.add('show');
+      setTimeout(() => toast.classList.remove('show'), 6000);
+    }
+  }
+
   function configured() {
     return /^https:\/\//.test(cfg.url || '') && /^sb_publishable_/.test(cfg.publishableKey || '');
   }
@@ -88,9 +99,10 @@
 
   // The app uses its existing configured Auth REST helper instead of adding
   // a CDN/SDK dependency, while matching Supabase's auth.resend interface.
-  const supabase = { auth: { resend: ({ type, email }) => {
+  const supabase = { auth: { resend: ({ type, email, options = {} }) => {
     if (type !== 'signup') throw new Error('Only signup confirmation resend is supported here.');
-    return api('/auth/v1/resend', { method: 'POST', auth: false, body: { type, email } });
+    const redirectTo = options.emailRedirectTo || AUTH_REDIRECT_URL;
+    return api(`/auth/v1/resend?redirect_to=${encodeURIComponent(redirectTo)}`, { method: 'POST', auth: false, body: { type, email } });
   } } };
 
   function normalizeSession(value) {
@@ -522,7 +534,7 @@
 
   async function login(email, password, signUp = false) {
     setStatus(signUp ? 'Creating account…' : 'Signing in…', 'pending');
-    const path = signUp ? '/auth/v1/signup' : '/auth/v1/token?grant_type=password';
+    const path = signUp ? `/auth/v1/signup?redirect_to=${encodeURIComponent(AUTH_REDIRECT_URL)}` : '/auth/v1/token?grant_type=password';
     const result = await api(path, { method: 'POST', auth: false, body: { email, password } });
     const session = normalizeSession(result);
     if (session) {
@@ -530,6 +542,61 @@
       await beginAuthenticatedSession();
     } else if (signUp) setStatus('Check your email to confirm the account, then sign in.', 'review');
     else setStatus('Sign-in did not return a session. Check the email confirmation setting.', 'error');
+  }
+
+  function cleanAuthCallbackUrl() {
+    // Auth credentials and errors are one-time URL parameters. Remove them
+    // before rendering while keeping the current GitHub Pages project path.
+    try { history.replaceState(null, '', `${location.origin}${location.pathname}`); } catch { /* URL cleanup is best-effort. */ }
+  }
+
+  function authCallbackParams() {
+    const query = new URLSearchParams(location.search);
+    const hash = new URLSearchParams(location.hash.replace(/^#/, ''));
+    const params = new Map();
+    for (const [key, value] of [...query, ...hash]) params.set(key, value);
+    return params;
+  }
+
+  async function processAuthCallback() {
+    const params = authCallbackParams();
+    const hasAuthCallback = ['access_token', 'refresh_token', 'code', 'error', 'error_code', 'error_description']
+      .some((key) => params.has(key));
+    if (!hasAuthCallback) return false;
+    cleanAuthCallbackUrl();
+
+    const errorCode = params.get('error_code') || params.get('error');
+    if (errorCode) {
+      const detail = params.get('error_description') || params.get('msg') || 'The confirmation link could not be verified.';
+      showAuthNotice(`Email confirmation failed (${errorCode}): ${detail} Request a fresh confirmation email and open it promptly.`, 'error');
+      return true;
+    }
+
+    const accessToken = params.get('access_token');
+    const refreshToken = params.get('refresh_token');
+    if (!accessToken || !refreshToken) {
+      const message = params.has('code')
+        ? 'The confirmation returned an authorization code that this REST-based sign-in cannot exchange. Request a new confirmation email after the app update.'
+        : 'The confirmation link did not include a complete sign-in session. Request a new confirmation email.';
+      showAuthNotice(message, 'error');
+      return true;
+    }
+
+    try {
+      const response = await fetch(`${cfg.url.replace(/\/$/, '')}/auth/v1/user`, {
+        headers: { apikey: cfg.publishableKey, Authorization: `Bearer ${accessToken}` }
+      });
+      const user = await response.json().catch(() => null);
+      if (!response.ok || !user?.id) throw new Error(user?.msg || user?.message || 'Supabase could not verify the confirmed account.');
+      const expiresIn = Number(params.get('expires_in') || 3600);
+      await saveSession({ access_token: accessToken, refresh_token: refreshToken, expires_in: expiresIn, user });
+      showAuthNotice('Email confirmed. You are signed in; your FarmBook records on this device are unchanged.', 'online');
+      return true;
+    } catch (error) {
+      await saveSession(null);
+      showAuthNotice(`Email confirmation was received, but FarmBook could not establish the session: ${error.message}`, 'error');
+      return true;
+    }
   }
 
   async function beginAuthenticatedSession() {
@@ -576,6 +643,7 @@
       }
       lastSnapshot = copy(bridge.getSnapshot());
       ready = true;
+      const callbackHandled = await processAuthCallback();
       const session = await getMeta('auth-session');
       if (session) {
         currentSession = normalizeSession(session);
@@ -584,7 +652,7 @@
         try { await beginAuthenticatedSession(); }
         catch (error) { setStatus(`Sign in again to sync: ${error.message}`, 'error'); }
       } else {
-        setStatus(navigator.onLine ? 'Not signed in · records stay on this device' : 'Offline · records stay on this device', 'offline');
+        if (!callbackHandled) setStatus(navigator.onLine ? 'Not signed in · records stay on this device' : 'Offline · records stay on this device', 'offline');
         paintAuth();
       }
     } catch (error) {
@@ -666,7 +734,7 @@
       }, 1000);
       button.textContent = 'Requesting email…';
       try {
-        await supabase.auth.resend({ type: 'signup', email });
+        await supabase.auth.resend({ type: 'signup', email, options: { emailRedirectTo: AUTH_REDIRECT_URL } });
         setStatus('If a signup confirmation is pending for this email, a new message has been requested. Check your inbox and spam folder.', 'review');
       } catch (error) {
         if (error.retryAfterMs > 60_000) sessionStorage.setItem(cooldownKey, String(Date.now() + error.retryAfterMs));
