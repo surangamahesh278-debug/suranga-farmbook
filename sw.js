@@ -1,8 +1,9 @@
-const CACHE_NAME = 'suranga-farmbook-v21';
+const CACHE_NAME = 'suranga-farmbook-v23';
 const APP_FILES = [
   './',
   './index.html',
   './styles.css',
+  './si.js',
   './app.js',
   './sync.js',
   './supabase-config.js',

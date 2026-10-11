@@ -1,0 +1,300 @@
+/* Display-only Sinhala localization. Stored values, IDs, backups, and sync payloads stay unchanged. */
+(() => {
+  'use strict';
+
+  const phrases = {
+    'Main navigation': 'ප්‍රධාන මෙනුව',
+    'FARM MANAGEMENT': 'ගොවිපළ කළමනාකරණය', 'FARM MANAGEMENT & EXPENSE RECORDS': 'ගොවිපළ කළමනාකරණය සහ වියදම් වාර්තා',
+    'FARM OWNER': 'ගොවිපළ හිමිකරු', 'WORKSPACE': 'ප්‍රධාන මෙනුව', 'PREFERENCES': 'සැකසුම්',
+    'Dashboard': 'ප්‍රධාන පුවරුව', 'Farms & crops': 'වගා කළමනාකරණය', 'Farms & cultivations': 'වගා කළමනාකරණය',
+    'Expenses': 'වියදම්', 'Income': 'ආදායම්', 'Reports': 'වාර්තා', 'Settings & backup': 'සැකසුම් සහ දත්ත උපස්ථය',
+    'Home': 'මුල් පිටුව', 'Farms': 'වගා', 'Settings': 'සැකසුම්', 'Ready to work': 'භාවිතයට සූදානම්',
+    'Private by default · sync is optional': 'දත්ත මෙම උපාංගයේ ආරක්ෂිතයි · සමමුහුර්ත කිරීම විකල්පයකි',
+    'LOCAL RECORDS': 'දේශීය වාර්තා', 'Install App': 'යෙදුම ස්ථාපනය කරන්න',
+    'Good day, Suranga': 'ආයුබෝවන්, Suranga', 'A clear picture of how your farm is growing.': 'ඔබේ ගොවිපළේ වර්ධනය පැහැදිලිව බලන්න.',
+    'YOUR FARM AT A GLANCE': 'ඔබේ ගොවිපළේ සාරාංශය', 'Growing with': 'සාර්ථකව වගා කරමු', 'purpose.': 'අරමුණින්',
+    'A little attention to the numbers helps every season thrive.': 'වියදම් සහ ආදායම් ගැන අවධානයෙන් සිටීම සෑම වගා කාලයකටම උපකාරී වේ.',
+    '＋ Add an expense': '＋ වියදමක් එක් කරන්න', 'TOTAL EXPENSES': 'මුළු වියදම', 'ALL TIME': 'සියලු කාලය',
+    'Across all farm records': 'සියලු ගොවිපළ වාර්තා', 'THIS MONTH': 'මෙම මාසයේ', 'Expenses recorded this month': 'මෙම මාසයේ සටහන් කළ වියදම්',
+    'TODAY': 'අද', 'Expenses recorded today': 'අද සටහන් කළ වියදම්', 'EXPENSE RECORDS': 'වියදම් වාර්තා',
+    'Entries in your ledger': 'ඔබේ ලේඛනයේ ඇතුළත් කිරීම්', 'WHERE IT GOES': 'වියදම් බෙදී යන ආකාරය',
+    'Expense breakdown': 'වියදම් බෙදීම', 'View reports →': 'වාර්තා බලන්න →', 'BY FIELD & CROP': 'ඉඩම සහ බෝගය අනුව',
+    'Cultivation snapshot': 'වගා සාරාංශය', 'Manage cultivations →': 'වගා කළමනාකරණය →',
+    'YOUR LAND, YOUR SEASONS': 'ඔබේ ඉඩම · ඔබේ වගා කාලය', 'Keep each field and crop season organized.': 'එක් එක් ඉඩම සහ වගා කාලය පිළිවෙළට තබාගන්න.',
+    '＋ Add farm / cultivation': '＋ ඉඩමක් / වගාවක් එක් කරන්න', 'Start with a farm or field': 'ඉඩමක් එක් කිරීමෙන් ආරම්භ කරන්න',
+    'Add its name, crop, season and land area. You can link expenses to it as you go.': 'නම, බෝගය, වගා කාලය සහ ඉඩම් ප්‍රමාණය ඇතුළත් කරන්න. පසුව එයට වියදම් සම්බන්ධ කළ හැකිය.',
+    '＋ Add your first cultivation': '＋ පළමු වගාව එක් කරන්න', 'Cultivation details': 'වගා විස්තර', 'Close cultivation details': 'වගා විස්තර වසන්න',
+    'COST BREAKDOWN': 'වියදම් බෙදීම', 'Expense categories': 'වියදම් වර්ග', 'CATEGORY': 'වර්ගය', 'TOTAL': 'එකතුව',
+    'THIS CULTIVATION ONLY': 'මෙම වගාව පමණි', 'DATE': 'දිනය', 'WORK': 'කළ වැඩ', 'DESCRIPTION': 'විස්තරය',
+    'QUANTITY': 'ප්‍රමාණය', 'TOTAL INCOME': 'මුළු ආදායම', 'CULTIVATION HISTORY': 'වගා ඉතිහාසය',
+    'Financial history by cultivation': 'වගාව අනුව මූල්‍ය ඉතිහාසය', 'STATUS': 'තත්ත්වය', 'CROP / CULTIVATION': 'බෝගය / වගාව',
+    'FARM & AREA': 'ඉඩම සහ ප්‍රමාණය', 'STARTED': 'ආරම්භ කළ දිනය', 'CLOSED': 'අවසන් කළ දිනය', 'TOTAL INCOME': 'මුළු ආදායම',
+    'PROFIT / LOSS': 'ලාභය / පාඩුව', 'LABOUR': 'ශ්‍රම වියදම්', 'FERTILIZER': 'පොහොර', 'PESTICIDES': 'පළිබෝධනාශක',
+    'FUEL': 'ඉන්ධන', 'MACHINERY': 'යන්ත්‍රෝපකරණ', 'PLANTS / SEEDS': 'පැළ / බීජ', 'IRRIGATION': 'ජල සම්පාදනය',
+    'TRANSPORT': 'ප්‍රවාහනය', 'EQUIPMENT': 'උපකරණ', 'OTHER': 'වෙනත්', 'LAND PREPARATION': 'ඉඩම සකස් කිරීම', 'OTHER*': 'වෙනත්*',
+    'COST / ACRE': 'අක්කරයක වියදම', 'COST / PERCH': 'පර්චසයක වියදම',
+    'YOUR FARM LEDGER': 'ඔබේ ගොවිපළ වියදම් ලේඛනය', 'Expense records': 'වියදම් වාර්තා',
+    'Record spending and see where each rupee goes.': 'වියදම් සටහන් කර මුදල් වැය වූ ආකාරය බලන්න.',
+    '＋ Add expense': '＋ වියදමක් එක් කරන්න', 'LEDGER ENTRY': 'වියදම් ඇතුළත් කිරීම', 'Add an expense': 'වියදමක් එක් කරන්න',
+    'Date *': 'දිනය *', 'Work done *': 'කළ වැඩ *', 'e.g. Prepare north field': 'උදා: උතුරු ඉඩම සකස් කිරීම',
+    'Farm / Land': 'ගොවිපළ / ඉඩම', 'Crop / Cultivation': 'බෝගය / වගාව', 'Cultivation batch / season': 'වගා කාණ්ඩය / වගා කාලය',
+    'Not assigned': 'වෙන් කර නැත', 'Choose farm first': 'පළමුව ඉඩම තෝරන්න', 'Expense category *': 'වියදම් වර්ගය *',
+    'Choose a category': 'වියදම් වර්ගයක් තෝරන්න', 'Land Preparation': 'ඉඩම සකස් කිරීම', 'Plants / Seeds': 'පැළ / බීජ',
+    'Fertilizer': 'පොහොර', 'Pesticides': 'පළිබෝධනාශක', 'Labour': 'ශ්‍රම වියදම්', 'Fuel': 'ඉන්ධන', 'Irrigation': 'ජල සම්පාදනය',
+    'Machinery': 'යන්ත්‍රෝපකරණ', 'Transport': 'ප්‍රවාහනය', 'Equipment': 'උපකරණ', 'Other': 'වෙනත්',
+    'Description': 'විස්තරය', 'A few extra details': 'අමතර විස්තර කිහිපයක්', 'Quantity *': 'ප්‍රමාණය *',
+    'Unit': 'ඒකකය', 'e.g. bags': 'උදා: බෑග්', 'Unit price (Rs.) *': 'ඒකක මිල (රු.) *', 'TOTAL COST': 'මුළු වියදම',
+    'Quantity × Unit price': 'ප්‍රමාණය × ඒකක මිල', 'Save expense': 'වියදම සුරකින්න', 'Cancel': 'අවලංගු කරන්න', '* Required fields': '* අනිවාර්යයි',
+    'Search work, description, farm or crop…': 'වැඩ, විස්තරය, ඉඩම හෝ බෝගය සොයන්න…', 'Search expense records': 'වියදම් වාර්තා සොයන්න',
+    'Farm': 'ඉඩම', 'Crop': 'බෝගය', 'Category': 'වර්ගය', 'Batch': 'කාණ්ඩය', 'From': 'සිට', 'To': 'දක්වා', 'Reset': 'පෙරහන් ඉවත් කරන්න',
+    'All farms': 'සියලු ඉඩම්', 'All crops': 'සියලු බෝග', 'All categories': 'සියලු වර්ග', 'All batches': 'සියලු කාණ්ඩ',
+    'All expenses': 'සියලු වියදම්', 'Your expense records': 'ඔබේ වියදම් වාර්තා', '↓ Export CSV': '↓ CSV ලෙස ලබාගන්න',
+    'WORK & DETAILS': 'කළ වැඩ සහ විස්තර', 'FARM / CROP / BATCH': 'ඉඩම / බෝගය / කාණ්ඩය', 'AMOUNT': 'මුදල',
+    'No expense records found': 'වියදම් වාර්තා හමු නොවීය', 'Add an expense or adjust your filters.': 'වියදමක් එක් කරන්න හෝ පෙරහන් වෙනස් කරන්න.',
+    '＋ Add expense': '＋ වියදමක් එක් කරන්න', 'SALES & RETURNS': 'විකුණුම් සහ ලැබීම්', 'Income & profit': 'ආදායම සහ ලාභය',
+    "Optional sales records help estimate your season's result.": 'විකුණුම් සටහන් කිරීමෙන් වගා කාලයේ ප්‍රතිඵලය ඇස්තමේන්තු කළ හැකිය.',
+    'ESTIMATED PROFIT': 'ඇස්තමේන්තුගත ලාභය', 'Total income − total expenses': 'මුළු ආදායම − මුළු වියදම',
+    'INCOME ENTRY': 'ආදායම් ඇතුළත් කිරීම', 'Add income': 'ආදායමක් එක් කරන්න', 'Farm / cultivation': 'ගොවිපළ / වගාව',
+    'Description *': 'විස්තරය *', 'e.g. Banana harvest sale': 'උදා: කෙසෙල් අස්වැන්න විකිණීම', 'Quantity': 'ප්‍රමාණය',
+    'e.g. kg': 'උදා: කි.ග්‍රෑ.', 'Selling price (Rs.) *': 'විකුණුම් මිල (රු.) *', 'Quantity × Selling price': 'ප්‍රමාණය × විකුණුම් මිල',
+    'Save income': 'ආදායම සුරකින්න', 'Income records': 'ආදායම් වාර්තා', 'Sales and other farm income': 'විකුණුම් සහ අනෙකුත් ගොවිපළ ආදායම්',
+    'FARM / CROP': 'ඉඩම / බෝගය', 'No income records yet': 'තවම ආදායම් වාර්තා නැත',
+    'You can add income whenever you have a sale to record.': 'විකිණීමක් සිදු වූ විට එහි ආදායම සටහන් කළ හැකිය.',
+    'YOUR FARM, IN NUMBERS': 'ඔබේ ගොවිපළේ සංඛ්‍යා', 'Review expenses, income and estimated profit.': 'වියදම්, ආදායම් සහ ඇස්තමේන්තුගත ලාභය බලන්න.',
+    '⎙ Print / Save PDF': '⎙ මුද්‍රණය / PDF ලෙස සුරකින්න', 'Report type': 'වාර්තා වර්ගය',
+    'Daily expense report': 'දෛනික වියදම් වාර්තාව', 'Monthly expense report': 'මාසික වියදම් වාර්තාව',
+    'Cultivation expense report': 'වගා වියදම් වාර්තාව', 'Cultivation financial result': 'වගාවේ මූල්‍ය ප්‍රතිඵලය',
+    'Category expense report': 'වර්ගය අනුව වියදම් වාර්තාව', 'Income vs expense / profit': 'ආදායම සහ වියදම / ලාභය',
+    'Cultivation': 'වගාව', 'All cultivations': 'සියලු වගා', 'Update report': 'වාර්තාව යාවත්කාලීන කරන්න',
+    'Summary of recorded farm activity': 'සටහන් කළ ගොවිපළ ක්‍රියාකාරකම්වල සාරාංශය', 'MONTH': 'මාසය', 'RECORDS': 'වාර්තා ගණන',
+    'LAND AREA': 'ඉඩම් ප්‍රමාණය', 'EXPENSES': 'වියදම්', 'INCOME': 'ආදායම', 'MEASURE': 'මිනුම',
+    'Total income': 'මුළු ආදායම', 'Total expenses': 'මුළු වියදම', 'Estimated profit': 'ඇස්තමේන්තුගත ලාභය',
+    'EXPENSES IN REPORT': 'වාර්තාවේ වියදම්', 'INCOME IN REPORT': 'වාර්තාවේ ආදායම',
+    'No records for this report yet.': 'මෙම වාර්තාව සඳහා තවම දත්ත නැත.', 'All recorded dates': 'සියලු සටහන් කළ දින',
+    'YOUR APP, YOUR RECORDS': 'ඔබේ යෙදුම · ඔබේ වාර්තා', 'Manage your farm details and keep a safe copy of your data.': 'ගොවිපළ විස්තර කළමනාකරණය කර දත්තවල ආරක්ෂිත පිටපතක් තබාගන්න.',
+    'Settings & backup': 'සැකසුම් සහ දත්ත උපස්ථය', 'PROFILE': 'පැතිකඩ', 'Farm information': 'ගොවිපළ තොරතුරු',
+    'These details personalize your FarmBook.': 'මෙම තොරතුරු ඔබේ FarmBook සඳහා භාවිත වේ.', 'Owner name': 'හිමිකරුගේ නම',
+    'Optional note about your farm': 'ගොවිපළ පිළිබඳ විකල්ප සටහනක්', 'Currency': 'මුදල් වර්ගය',
+    'LKR — Sri Lankan Rupee (Rs.)': 'LKR — ශ්‍රී ලංකා රුපියල් (රු.)', 'Save settings': 'සැකසුම් සුරකින්න',
+    'YOUR DEVICE': 'ඔබේ උපාංගය', 'Data backup & restore': 'දත්ත උපස්ථය සහ ප්‍රතිසාධනය',
+    'Your records stay in this browser. Export a backup to move or protect them.': 'ඔබේ වාර්තා මෙම බ්‍රවුසරයේ සුරැකේ. ඒවා ගෙනයාමට හෝ ආරක්ෂා කිරීමට උපස්ථයක් ලබාගන්න.',
+    '↓ Export backup (JSON)': '↓ උපස්ථය ලබාගන්න (JSON)', '↑ Import backup (JSON)': '↑ උපස්ථය ආයාත කරන්න (JSON)',
+    '↓ Download expenses (CSV)': '↓ වියදම් ලබාගන්න (CSV)',
+    'Importing a backup replaces the current records on this device. Export first if you want to keep a copy.': 'උපස්ථයක් ආයාත කළ විට මෙම උපාංගයේ වාර්තා ප්‍රතිස්ථාපනය වේ. පිටපතක් අවශ්‍ය නම් පළමුව උපස්ථයක් ලබාගන්න.',
+    'INSTALL & ABOUT': 'ස්ථාපනය සහ යෙදුම ගැන', 'Install the app for quick access and offline use.': 'ඉක්මන් ප්‍රවේශය සහ අන්තර්ජාලය නොමැතිව භාවිතය සඳහා යෙදුම ස්ථාපනය කරන්න.',
+    'Version 1.0 · Local records remain available; optional secure sync connects your devices.': 'අනුවාදය 1.0 · දේශීය වාර්තා පවතී; විකල්ප ආරක්ෂිත සමමුහුර්තකරණයෙන් උපාංග සම්බන්ධ වේ.',
+    'OPTIONAL CLOUD SYNC': 'විකල්ප වලාකුළු සමමුහුර්ත කිරීම', 'Sync between your devices': 'ඔබේ උපාංග අතර දත්ත සමමුහුර්ත කරන්න',
+    'Sign in with the same account on your laptop and phone. Records continue saving locally and queue while offline. Your existing JSON backup remains independent.': 'ලැප්ටොප් සහ දුරකථනයේ එකම ගිණුමෙන් පිවිසෙන්න. වාර්තා උපාංගයේම සුරැකෙන අතර අන්තර්ජාලය නැති විට පෝලිම්ගත වේ. ඔබේ JSON උපස්ථය වෙනම පවතී.',
+    'Preparing secure local sync storage…': 'ආරක්ෂිත දේශීය සමමුහුර්ත ගබඩාව සූදානම් කරමින්…', 'Email': 'විද්‍යුත් තැපෑල',
+    'Password': 'මුරපදය', 'Sign in': 'පිවිසෙන්න', 'Create account': 'ගිණුමක් සාදන්න',
+    'Resend confirmation email': 'තහවුරු කිරීමේ විද්‍යුත් තැපෑල නැවත යවන්න',
+    'If your signup confirmation link expires, enter the same email above and request another.': 'තහවුරු කිරීමේ සබැඳිය කල් ඉකුත් වුවහොත්, ඉහත එම විද්‍යුත් තැපෑල ඇතුළත් කර නැවත ඉල්ලන්න.',
+    'Signed in as': 'පිවිසී ඇත්තේ', 'Sync now': 'දැන් සමමුහුර්ත කරන්න', 'Review migration': 'දත්ත ගෙනයාම පරීක්ෂා කරන්න',
+    'Sign out': 'ඉවත් වන්න', 'Preview a JSON backup for migration': 'දත්ත ගෙනයාමට JSON උපස්ථයක් පෙරදසුන් කරන්න',
+    'No existing records are sent until you review the exact migration preview and confirm. Continue keeping JSON backups.': 'ඔබ පෙරදසුන පරීක්ෂා කර තහවුරු කරන තුරු වාර්තා යවනු නොලැබේ. JSON උපස්ථ තවදුරටත් තබාගන්න.',
+    'Farm Management & Expense Records': 'ගොවිපළ කළමනාකරණය සහ වියදම් වාර්තා',
+    'Private by default · sync is optional': 'දත්ත උපාංගයේම ආරක්ෂිතයි · සමමුහුර්ත කිරීම විකල්පයකි',
+    'FIELD & SEASON': 'ඉඩම සහ වගා කාලය', 'Add a cultivation': 'වගාවක් එක් කරන්න', 'Farm / Land name *': 'ගොවිපළ / ඉඩමේ නම *',
+    'e.g. North Field': 'උදා: උතුරු ඉඩම', 'Choose crop': 'බෝගයක් තෝරන්න', 'Paddy / Rice': 'වී / සහල්',
+    'Banana': 'කෙසෙල් (Banana)', 'Chilli': 'මිරිස් (Chilli)', 'Pumpkin': 'වට්ටක්කා (Pumpkin)', 'Tomato': 'තක්කාලි (Tomato)',
+    'Capsicum': 'මාළු මිරිස් (Capsicum)', 'Mung Bean': 'මුං ඇට (Mung Bean)', 'Bitter Gourd': 'කරවිල (Bitter Gourd)',
+    'Cultivation batch / season': 'වගා කාණ්ඩය / වගා කාලය', 'e.g. Yala 2026': 'උදා: යල 2026', 'Land area': 'ඉඩම් ප්‍රමාණය',
+    'Optional': 'විකල්පයි', 'Land area unit': 'ඉඩම් ප්‍රමාණයේ ඒකකය', 'Acre': 'අක්කර', 'Perch': 'පර්චස්', 'Hectare': 'හෙක්ටයාර්',
+    'Crop name (if Other)': 'වෙනත් බෝගයක් නම් එහි නම', 'Enter crop name': 'බෝගයේ නම ඇතුළත් කරන්න',
+    'Save cultivation': 'වගාව සුරකින්න', 'Cancel': 'අවලංගු කරන්න', 'My Cultivations': 'මගේ වගා', 'MY CULTIVATIONS': 'මගේ වගා',
+    'Select Cultivation': 'වගාව තෝරන්න', 'All Cultivations': 'සියලු වගා', 'View cultivation': 'වගාව බලන්න',
+    'View financial details': 'මූල්‍ය විස්තර බලන්න', 'No cultivations added yet.': 'තවම වගා එක් කර නැත.',
+    'Add a farm or crop →': 'ඉඩමක් හෝ බෝගයක් එක් කරන්න →', 'Season unspecified': 'වගා කාලය සඳහන් කර නැත',
+    'Season not specified': 'වගා කාලය සඳහන් කර නැත', 'No season': 'වගා කාලයක් නැත', 'No batch listed': 'කාණ්ඩයක් සඳහන් කර නැත',
+    'Not set': 'සඳහන් කර නැත', 'Area not set': 'ඉඩම් ප්‍රමාණය සඳහන් කර නැත', 'Active': 'සක්‍රිය', 'Completed': 'අවසන්',
+    'Profit': 'ලාභය', 'Loss': 'පාඩුව', 'FINAL': 'අවසන්', 'CURRENT': 'වත්මන්', 'Current result': 'වත්මන් ප්‍රතිඵලය',
+    'Final result': 'අවසන් ප්‍රතිඵලය', 'COST PER ACRE': 'අක්කරයක වියදම', 'COST PER PERCH': 'පර්චසයක වියදම',
+    'Edit cultivation': 'වගාව සංස්කරණය කරන්න', 'Delete cultivation': 'වගාව මකන්න', 'Edit expense': 'වියදම සංස්කරණය කරන්න',
+    'Delete expense': 'වියදම මකන්න', 'Edit income': 'ආදායම සංස්කරණය කරන්න', 'Delete income': 'ආදායම මකන්න',
+    'Complete cultivation': 'වගාව අවසන් කරන්න', '✓ Complete cultivation': '✓ වගාව අවසන් කරන්න',
+    'Delete': 'මකන්න', 'Update expense': 'වියදම යාවත්කාලීන කරන්න', 'Update income': 'ආදායම යාවත්කාලීන කරන්න',
+    'No expenses for this cultivation.': 'මෙම වගාවට තවම වියදම් නැත.', 'No income for this cultivation.': 'මෙම වගාවට තවම ආදායම් නැත.',
+    'All Cultivations · Overall Summary': 'සියලු වගා · සමස්ත සාරාංශය', 'Total Expenses:': 'මුළු වියදම:',
+    'Total Income:': 'මුළු ආදායම:', 'Profit / Loss:': 'ලාභය / පාඩුව:', 'Farm / Land:': 'ගොවිපළ / ඉඩම:',
+    'Crop / Cultivation:': 'බෝගය / වගාව:', 'Season / Batch:': 'වගා කාලය / කාණ්ඩය:', 'Land area:': 'ඉඩම් ප්‍රමාණය:',
+    'Status:': 'තත්ත්වය:', 'Started:': 'ආරම්භ කළේ:', 'Closed:': 'අවසන් කළේ:', 'Selected:': 'තෝරාගත්තේ:',
+    'This month · selected cultivation': 'මෙම මාසයේ · තෝරාගත් වගාව', 'Today · selected cultivation': 'අද · තෝරාගත් වගාව',
+    'Records for selected cultivation': 'තෝරාගත් වගාවේ වාර්තා', 'Profit / Loss': 'ලාභය / පාඩුව',
+    'Expense updated': 'වියදම යාවත්කාලීන කළා', 'Expense saved': 'වියදම සුරැකුවා', 'Income updated': 'ආදායම යාවත්කාලීන කළා',
+    'Income saved': 'ආදායම සුරැකුවා', 'Expense deleted': 'වියදම මැකුවා', 'Income deleted': 'ආදායම මැකුවා',
+    'Cultivation completed; financial history preserved': 'වගාව අවසන් කළා; මූල්‍ය ඉතිහාසය සුරක්ෂිතයි',
+    'Settings saved': 'සැකසුම් සුරැකුවා', 'Backup restored successfully': 'උපස්ථය සාර්ථකව ප්‍රතිස්ථාපනය කළා',
+    'This file is not a Suranga FarmBook backup.': 'මෙය Suranga FarmBook උපස්ථ ගොනුවක් නොවේ.',
+    'Could not read that backup file.': 'එම උපස්ථ ගොනුව කියවිය නොහැක.', 'Restore': 'ප්‍රතිස්ථාපනය කරන්න',
+    'To install on iPhone or iPad: tap Share, then choose “Add to Home Screen”.': 'iPhone හෝ iPad මත ස්ථාපනයට Share ඔබා “Add to Home Screen” තෝරන්න.',
+    'Suranga FarmBook is installed on this device.': 'Suranga FarmBook මෙම උපාංගයේ ස්ථාපනය කර ඇත.',
+    'To install, open this app from its website in Chrome or Edge and use the Install icon in the address bar or browser menu. On Android, choose “Add to Home screen” or “Install app”.': 'ස්ථාපනයට Chrome හෝ Edge හි වෙබ් අඩවියෙන් යෙදුම විවෘත කර ලිපින තීරුවේ හෝ බ්‍රවුසර මෙනුවේ Install තෝරන්න. Android මත “Add to Home screen” හෝ “Install app” තෝරන්න.',
+    'Cloud synced': 'වලාකුළ සමඟ සමමුහුර්තයි', 'Offline · changes queued': 'අන්තර්ජාලය නොමැත · වෙනස්කම් පසුව සමමුහුර්ත කිරීමට රැඳී ඇත',
+    'Nothing has been uploaded.': 'තවම කිසිවක් උඩුගත කර නැත.',
+    'Review the exact local snapshot below. Cloud changes will be merged by record ID; records with the same ID but different contents will be held as conflicts.': 'පහත දේශීය දත්ත පිටපත පරීක්ෂා කරන්න. වාර්තා ID අනුව දත්ත සසඳනු ඇත; එකම ID යටතේ වෙනස්කම් තිබේ නම් තීරණයක් අවශ්‍ය වේ.',
+    'This device to review:': 'පරීක්ෂා කිරීමට මෙම උපාංගයෙන්:', 'Already in cloud:': 'දැනටමත් වලාකුළේ:',
+    'Same-ID records needing review:': 'එකම ID සහිත පරීක්ෂා කළ යුතු වාර්තා:', 'cultivations': 'වගා', 'expenses': 'වියදම්',
+    'income records': 'ආදායම් වාර්තා', 'Review every local record': 'සියලු දේශීය වාර්තා පරීක්ෂා කරන්න',
+    'No local records in this snapshot.': 'මෙම දත්ත පිටපතේ දේශීය වාර්තා නැත.', 'Review the exact JSON snapshot': 'නිශ්චිත JSON දත්ත පිටපත පරීක්ෂා කරන්න',
+    'Confirm this snapshot and begin sync': 'මෙම දත්ත තහවුරු කර සමමුහුර්ත කිරීම අරඹන්න', 'Cancel review': 'පරීක්ෂාව අවලංගු කරන්න',
+    'Preparing safe merge…': 'දත්ත ආරක්ෂිතව එක් කිරීමට සූදානම් කරමින්…', 'Review changes made on different devices': 'වෙනත් උපාංගවල කළ වෙනස්කම් පරීක්ෂා කරන්න',
+    'This record changed in two places. Choose which version to keep; the other is not discarded until you choose.': 'මෙම වාර්තාව ස්ථාන දෙකක වෙනස් වී ඇත. තබාගත යුතු අනුවාදය තෝරන්න; ඔබ තෝරන තෙක් අනෙක මැකෙන්නේ නැත.',
+    'Keep cloud version': 'වලාකුළු අනුවාදය තබාගන්න', "Keep this device's version": 'මෙම උපාංගයේ අනුවාදය තබාගන්න',
+    'Signed in · ready for your first sync': 'පිවිසී ඇත · පළමු සමමුහුර්තයට සූදානම්', 'Review local data before syncing': 'සමමුහුර්ත කිරීමට පෙර දේශීය දත්ත පරීක්ෂා කරන්න',
+    'Migration review approved · syncing': 'දත්ත ගෙනයාම තහවුරුයි · සමමුහුර්ත කරමින්', 'Cloud changed · review the refreshed migration preview': 'වලාකුළු දත්ත වෙනස් වී ඇත · යාවත්කාලීන පෙරදසුන පරීක්ෂා කරන්න',
+    'Could not prepare migration:': 'දත්ත ගෙනයාම සූදානම් කළ නොහැක:', 'Cloud data loaded on this device': 'වලාකුළු දත්ත මෙම උපාංගයට ලබාගත්තා',
+    'Synchronizing…': 'සමමුහුර්ත කරමින්…', 'Signed in': 'පිවිසී ඇත', 'Check your email to confirm the account, then sign in.': 'ගිණුම තහවුරු කිරීමට ඔබේ විද්‍යුත් තැපෑල බලන්න, ඉන්පසු පිවිසෙන්න.',
+    'Sign-in did not return a session. Check the email confirmation setting.': 'පිවිසුම් සැසියක් ලැබුණේ නැත. විද්‍යුත් තැපෑල තහවුරු කිරීම පරීක්ෂා කරන්න.',
+    'Email confirmation failed': 'විද්‍යුත් තැපෑල තහවුරු කිරීම අසාර්ථකයි', 'The confirmation link could not be verified.': 'තහවුරු කිරීමේ සබැඳිය සත්‍යාපනය කළ නොහැක.',
+    'Request a fresh confirmation email and open it promptly.': 'නව තහවුරු කිරීමේ විද්‍යුත් තැපෑලක් ඉල්ලා ඉක්මනින් විවෘත කරන්න.',
+    'The confirmation returned an authorization code that this REST-based sign-in cannot exchange. Request a new confirmation email after the app update.': 'තහවුරු කිරීමේ කේතය සැසියකට පරිවර්තනය කළ නොහැක. යෙදුම යාවත්කාලීන කළ පසු නව තහවුරු කිරීමේ විද්‍යුත් තැපෑලක් ඉල්ලන්න.',
+    'The confirmation link did not include a complete sign-in session. Request a new confirmation email.': 'තහවුරු කිරීමේ සබැඳියෙන් සම්පූර්ණ පිවිසුම් සැසියක් ලැබුණේ නැත. නව විද්‍යුත් තැපෑලක් ඉල්ලන්න.',
+    'Email confirmed. You are signed in; your FarmBook records on this device are unchanged.': 'විද්‍යුත් තැපෑල තහවුරුයි. ඔබ පිවිසී ඇත; මෙම උපාංගයේ FarmBook වාර්තා වෙනස් කර නැත.',
+    'If a signup confirmation is pending for this email, a new message has been requested. Check your inbox and spam folder.': 'මෙම විද්‍යුත් තැපෑලට තහවුරු කිරීමක් බලාපොරොත්තුවෙන් තිබේ නම් නව පණිවිඩයක් ඉල්ලා ඇත. Inbox සහ Spam පරීක්ෂා කරන්න.',
+    'Could not request a confirmation email:': 'තහවුරු කිරීමේ විද්‍යුත් තැපෑල ඉල්ලිය නොහැක:',
+    'Supabase is limiting confirmation emails. Please wait before trying again.': 'තහවුරු කිරීමේ විද්‍යුත් තැපෑල සඳහා සීමාවක් ඇත. නැවත උත්සාහ කිරීමට පෙර රැඳී සිටින්න.',
+    'Sync storage upgrade is waiting for another FarmBook tab to close. Close the other tab; this upgrade will continue automatically. Your saved records are unchanged.': 'සමමුහුර්ත ගබඩාව යාවත්කාලීන කිරීමට අනෙක් FarmBook පටිත්ත වසන්න. එවිට යාවත්කාලීනය ස්වයංක්‍රීයව ඉදිරියට යයි. සුරැකි වාර්තා වෙනස් කර නැත.',
+    'Signed out · this device’s local data remains available': 'ඉවත් වී ඇත · මෙම උපාංගයේ දේශීය දත්ත තවමත් ඇත',
+    'Cloud sync is not configured': 'වලාකුළු සමමුහුර්තකරණය සකසා නැත', 'Not signed in · records stay on this device': 'පිවිසී නැත · වාර්තා මෙම උපාංගයේම පවතී',
+    'Offline · records stay on this device': 'අන්තර්ජාලය නොමැත · වාර්තා මෙම උපාංගයේම පවතී', 'Online · sign in to sync': 'අන්තර්ජාලය ඇත · සමමුහුර්ත කිරීමට පිවිසෙන්න',
+    'Local sync storage unavailable:': 'දේශීය සමමුහුර්ත ගබඩාව භාවිත කළ නොහැක:',
+    'No existing records are sent until you review the exact migration preview and confirm. Continue keeping JSON backups.': 'පෙරදසුන පරීක්ෂා කර තහවුරු කරන තුරු පවතින වාර්තා යවන්නේ නැත. JSON උපස්ථ තවදුරටත් තබාගන්න.',
+    'FARM': 'ඉඩම', 'CROP': 'බෝගය', 'BATCH': 'කාණ්ඩය',
+    'Organize your land, crops and seasons.': 'ඔබේ ඉඩම්, බෝග සහ වගා කාලය පිළිවෙළට සකසන්න.',
+    'Track farm sales and estimated profit.': 'ගොවිපළ විකුණුම් සහ ඇස්තමේන්තුගත ලාභය සටහන් කරන්න.',
+    'Useful summaries for your fields and seasons.': 'ඔබේ ඉඩම් සහ වගා කාල සඳහා ප්‍රයෝජනවත් සාරාංශ.',
+    'Creating account…': 'ගිණුම සාදමින්…', 'Signing in…': 'පිවිසෙමින්…',
+    'Migration preview ready · nothing uploaded': 'දත්ත ගෙනයාමේ පෙරදසුන සූදානම් · කිසිවක් උඩුගත කර නැත',
+    'Backup preview ready · nothing uploaded or replaced': 'උපස්ථ පෙරදසුන සූදානම් · කිසිවක් උඩුගත හෝ ප්‍රතිස්ථාපනය කර නැත',
+    'Review the exact current device snapshot before any upload.': 'උඩුගත කිරීමට පෙර මෙම උපාංගයේ දත්ත පිටපත පරීක්ෂා කරන්න.',
+    'This is a one-time review before enabling cloud sync on this device.': 'මෙම උපාංගයේ සමමුහුර්තකරණය සක්‍රිය කිරීමට පෙර එක් වරක් පරීක්ෂා කරන්න.',
+    'Could not load migration preview:': 'දත්ත ගෙනයාමේ පෙරදසුන ලබාගත නොහැක:',
+    'Backup preview failed:': 'උපස්ථ පෙරදසුන අසාර්ථකයි:',
+    'That file is not a Suranga FarmBook JSON backup.': 'එම ගොනුව Suranga FarmBook JSON උපස්ථයක් නොවේ.',
+    '＋ Add income': '＋ ආදායමක් එක් කරන්න',
+    'Crop / Cultivation *': 'බෝගය / වගාව *',
+    'Edit income': 'ආදායම සංස්කරණය කරන්න', 'Update cultivation': 'වගාව යාවත්කාලීන කරන්න',
+    'Cultivation added': 'වගාව එක් කළා', 'Cultivation updated': 'වගාව යාවත්කාලීන කළා', 'Cultivation deleted': 'වගාව මැකුවා',
+    'Expense deleted': 'වියදම මැකුවා', 'Income deleted': 'ආදායම මැකුවා',
+    'Expense saved': 'වියදම සුරැකුවා', 'Expense updated': 'වියදම යාවත්කාලීන කළා',
+    'Income saved': 'ආදායම සුරැකුවා', 'Income updated': 'ආදායම යාවත්කාලීන කළා',
+    'Cultivation completed; financial history preserved': 'වගාව අවසන් කළා; එහි මූල්‍ය ඉතිහාසය සුරැකී ඇත',
+    'Settings saved': 'සැකසුම් සුරැකුවා', 'Backup restored successfully': 'උපස්ථය සාර්ථකව ප්‍රතිස්ථාපනය කළා',
+    'App installed successfully': 'යෙදුම සාර්ථකව ස්ථාපනය කළා',
+    'Requesting email…': 'විද්‍යුත් තැපෑල ඉල්ලමින්…',
+    'Offline ready': 'අන්තර්ජාලය නොමැතිව භාවිතයට සූදානම්',
+    'Online · local records': 'අන්තර්ජාලය ඇත · වාර්තා මෙම උපාංගයේ සුරැකේ',
+    'Offline · ready': 'අන්තර්ජාලය නොමැත · භාවිතයට සූදානම්',
+    'Offline · changes are saved on this device': 'අන්තර්ජාලය නොමැත · වෙනස්කම් මෙම උපාංගයේ සුරැකී ඇත',
+    'Cloud records changed since the last preview. Review the refreshed preview before confirming.': 'අවසන් පෙරදසුනෙන් පසු වලාකුළේ වාර්තා වෙනස් වී ඇත. තහවුරු කිරීමට පෙර අලුත් පෙරදසුන පරීක්ෂා කරන්න.',
+    'Cloud changed · review the refreshed migration preview': 'වලාකුළේ දත්ත වෙනස් වී ඇත · අලුත් කළ දත්ත ගෙනයාමේ පෙරදසුන පරීක්ෂා කරන්න',
+    'Review the exact local snapshot below. Cloud changes will be merged by record ID; records with the same ID but different contents will be held as conflicts.': 'පහත දේශීය දත්ත පිටපත පරීක්ෂා කරන්න. වාර්තා ID අනුව වලාකුළු දත්ත සමඟ සසඳනු ඇත. එකම ID සහිත වාර්තාවක අන්තර්ගතය වෙනස් නම්, ඔබ තීරණය කරන තෙක් එය ගැටුමක් ලෙස රඳවා තබයි.',
+    'Preview combines the selected backup with current device records by existing record ID. Current device values are retained for IDs that differ.': 'තෝරාගත් උපස්ථය සහ මෙම උපාංගයේ වාර්තා පවතින වාර්තා ID අනුව සසඳා පෙරදසුන සකස් කර ඇත. ID එකකට වෙනස් දත්ත තිබේ නම් මෙම උපාංගයේ දත්ත තබා ඇත.',
+    'Unit price': 'ඒකක මිල', 'Quantity': 'ප්‍රමාණය',
+    'Changes queued': 'වෙනස්කම් සමමුහුර්ත කිරීමට පෝලිමේ රැඳී ඇත',
+    'Online · sign in to sync': 'අන්තර්ජාලය ඇත · සමමුහුර්ත කිරීමට පිවිසෙන්න',
+    'Offline · changes queued': 'අන්තර්ජාලය නොමැත · වෙනස්කම් අන්තර්ජාලය ලැබුණු විට සමමුහුර්ත කිරීමට පෝලිමේ ඇත',
+    'Migration review approved · syncing': 'දත්ත ගෙනයාම අනුමතයි · සමමුහුර්ත කරමින්',
+    'Review local data before syncing': 'සමමුහුර්ත කිරීමට පෙර දේශීය දත්ත පරීක්ෂා කරන්න',
+    'Signed in · ready for your first sync': 'පිවිසී ඇත · පළමු සමමුහුර්තකරණයට සූදානම්',
+    'Selected:': 'තෝරාගත්තේ:',
+    'Please wait before trying again.': 'නැවත උත්සාහ කිරීමට පෙර රැඳී සිටින්න.'
+  };
+
+  const patterns = [
+    [/^Owner: (.*); farm info: (.*)$/, 'හිමිකරු: $1; ගොවිපළ තොරතුරු: $2'],
+    [/^(\d+) cultivations · (\d+) expenses · (\d+) income records$/, 'වගා: $1 · වියදම්: $2 · ආදායම් වාර්තා: $3'],
+    [/^Review every local record \((\d+)\)$/, 'දේශීය වාර්තා සියල්ල පරීක්ෂා කරන්න ($1)'],
+    [/^(.+) · (Active|Completed) · Started (.+?)(?: · Closed (.+))?$/, (match, farm, status, started, closed) => `${farm} · ${translate(status)} · ආරම්භ කළ දිනය: ${started}${closed ? ` · අවසන් කළ දිනය: ${closed}` : ''}`],
+    [/^(\d+) change\(s\) waiting to sync$/, '$1 වෙනස්කම් අන්තර්ජාලය ලැබුණු විට සමමුහුර්ත කිරීමට පෝලිමේ ඇත'],
+    [/^(\d+) record conflict\(s\) need your choice$/, '$1 වාර්තා ගැටුම් සඳහා ඔබේ තීරණය අවශ්‍යයි'],
+    [/^(\d+) change conflict\(s\) need your choice$/, '$1 වෙනස්කම් ගැටුම් සඳහා ඔබේ තීරණය අවශ්‍යයි'],
+    [/^(\d+) change\(s\) waiting to sync$/, '$1 වෙනස්කම් අන්තර්ජාලය ලැබුණු විට සමමුහුර්ත කිරීමට පෝලිමේ ඇත'],
+    [/^Synced just now · (.+)$/, 'දැන් සමමුහුර්ත කළා · $1'],
+    [/^Good day, (.+)$/, 'ආයුබෝවන්, $1'],
+    [/^Sync paused: (.+)$/, 'සමමුහුර්ත කිරීම තාවකාලිකව නතරයි: $1'],
+    [/^Could not prepare migration: (.+)$/, 'දත්ත ගෙනයාම සූදානම් කළ නොහැක: $1'],
+    [/^Could not load migration preview: (.+)$/, 'දත්ත ගෙනයාමේ පෙරදසුන ලබාගත නොහැක: $1'],
+    [/^Backup preview failed: (.+)$/, 'උපස්ථ පෙරදසුන අසාර්ථකයි: $1'],
+    [/^Local sync storage unavailable: (.+)$/, 'දේශීය සමමුහුර්ත ගබඩාව භාවිත කළ නොහැක: $1'],
+    [/^Could not request a confirmation email: (.+)$/, 'තහවුරු කිරීමේ විද්‍යුත් තැපෑල ඉල්ලිය නොහැක: $1'],
+    [/^Supabase is limiting confirmation emails\. Please wait before trying again\. (.+)$/, 'තහවුරු කිරීමේ විද්‍යුත් තැපෑල සඳහා සීමාවක් ඇත. නැවත උත්සාහ කිරීමට පෙර රැඳී සිටින්න. $1'],
+    [/^Sign in first to preview cloud migration\.$/, 'දත්ත ගෙනයාමේ පෙරදසුනට පෙර පිවිසෙන්න.'],
+    [/^Sign in again to sync: (.+)$/, 'සමමුහුර්ත කිරීමට නැවත පිවිසෙන්න: $1'],
+    [/^Sync setup paused: (.+)$/, 'සමමුහුර්ත සැකසුම තාවකාලිකව නතරයි: $1'],
+    [/^Sync sign-in failed: (.+)$/, 'සමමුහුර්ත පිවිසුම අසාර්ථකයි: $1'],
+    [/^Sign-in failed: (.+)$/, 'පිවිසීම අසාර්ථකයි: $1'],
+    [/^Account setup failed: (.+)$/, 'ගිණුම සකස් කිරීම අසාර්ථකයි: $1'],
+    [/^Could not load migration preview: (.+)$/, 'දත්ත ගෙනයාමේ පෙරදසුන ලබාගත නොහැක: $1'],
+    [/^Backup preview failed: (.+)$/, 'උපස්ථ පෙරදසුන අසාර්ථකයි: $1'],
+    [/^Local queue error: (.+)$/, 'දේශීය පෝලිමේ දෝෂයක්: $1'],
+    [/^Please wait (\d+) seconds before requesting another confirmation email\.$/, 'තවත් තහවුරු කිරීමේ විද්‍යුත් තැපෑලක් ඉල්ලීමට පෙර තත්පර $1 ක් රැඳී සිටින්න.'],
+    [/^(\d+) cultivations?$/, '$1 වගා'],
+    [/^Wait (\d+)s to resend$/, 'නැවත යැවීමට තත්පර $1 ක් රැඳී සිටින්න'],
+    [/^(.+) × Unit price$/, '$1 × ඒකක මිල'],
+    [/^Selected: (.+)$/, 'තෝරාගත් වගාව: $1'],
+    [/^Quantity × (Rs\. .+)$/, 'ප්‍රමාණය × $1'],
+    [/^Local queue error: (.+)$/, 'දේශීය සමමුහුර්ත පෝලිමේ දෝෂයක්: $1'],
+    [/^From (.+) onward$/, '$1 සිට ඉදිරියට'], [/^Through (.+)$/, '$1 දක්වා'],
+    [/^Farm: (.+)$/, 'ඉඩම: $1'], [/^Status: (.+)$/, 'තත්ත්වය: $1'],
+    [/^From (.+) onward$/, '$1 සිට ඉදිරියට'], [/^Through (.+)$/, '$1 දක්වා'],
+    [/^Started: (.+)$/, 'ආරම්භ කළේ: $1'], [/^Closed: (.+)$/, 'අවසන් කළේ: $1'],
+    [/^Delete “(.+)” expense\? This cannot be undone\.$/, '“$1” වියදම මකන්නද? මෙය නැවත හැරවිය නොහැක.'],
+    [/^Delete “(.+)” cultivation\? (.*) This cannot be undone\.$/, '“$1” වගාව මකන්නද? $2 මෙය නැවත හැරවිය නොහැක.'],
+    [/^Delete income record “(.+)”\? This cannot be undone\.$/, '“$1” ආදායම් වාර්තාව මකන්නද? මෙය නැවත හැරවිය නොහැක.'],
+    [/^Complete “(.+)”? Its records will be kept in completed history\.$/, '“$1” වගාව අවසන් කරන්නද? එහි වාර්තා අවසන් කළ වගා ඉතිහාසයේ සුරැකේ.'],
+    [/^Restore (\d+) expense\(s\), (\d+) cultivation\(s\) and (\d+) income record\(s\)\? Current records will be replaced\.$/, '$1 වියදම්, $2 වගා සහ $3 ආදායම් වාර්තා ප්‍රතිස්ථාපනය කරන්නද? වත්මන් වාර්තා වෙනුවට මේවා යෙදේ.'],
+    [/^Cultivation is completed.*$/, 'මෙම වගාව අවසන් කර ඇත. එහි පැරණි වාර්තා කියවීමට පමණි.'],
+    [/^This cultivation is completed\. Its historical records are read-only\.$/, 'මෙම වගාව අවසන් කර ඇත. එහි ඉතිහාස වාර්තා වෙනස් කළ නොහැක.'],
+    [/^Completed cultivations are kept as permanent history and cannot be deleted\.$/, 'අවසන් කළ වගා ස්ථිර ඉතිහාසයක් ලෙස සුරකින බැවින් මැකිය නොහැක.'],
+    [/^Email confirmation was received, but FarmBook could not establish the session: (.+)$/, 'විද්‍යුත් තැපෑල තහවුරු වුවත් පිවිසුම් සැසිය සකස් කළ නොහැකි විය: $1'],
+    [/^Email confirmation failed \((.+)\): (.+) Request a fresh confirmation email and open it promptly\.$/, 'විද්‍යුත් තැපෑල තහවුරු කිරීම අසාර්ථකයි ($1): $2 නව තහවුරු කිරීමේ විද්‍යුත් තැපෑලක් ඉල්ලා ඉක්මනින් විවෘත කරන්න.']
+  ];
+
+  function translate(value) {
+    const text = String(value ?? '');
+    if (Object.prototype.hasOwnProperty.call(phrases, text)) return phrases[text];
+    for (const [pattern, replacement] of patterns) if (pattern.test(text)) return text.replace(pattern, replacement);
+    return text;
+  }
+
+  const attrNames = ['placeholder', 'aria-label', 'title'];
+  function translateNode(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      const value = node.nodeValue;
+      if (value.trim()) {
+        const trimmed = value.trim();
+        const parent = node.parentElement;
+        let localized = translate(trimmed);
+        const entityLabels = { cultivation: 'වගාව', expense: 'වියදම', income: 'ආදායම', settings: 'සැකසුම්' };
+        if (parent?.tagName === 'B' && parent.closest('.cloud-preview-list')) localized = entityLabels[trimmed] || localized;
+        else if (parent?.tagName === 'B' && parent.closest('.cloud-conflict')) localized = trimmed.replace(/^(cultivation|expense|income|settings)( · .+)$/, (_, entity, suffix) => `${entityLabels[entity]}${suffix}`);
+        if (localized !== trimmed) {
+        const leading = value.match(/^\s*/)[0], trailing = value.match(/\s*$/)[0];
+          node.nodeValue = leading + localized + trailing;
+        }
+      }
+      return;
+    }
+    if (node.nodeType !== Node.ELEMENT_NODE || /^(SCRIPT|STYLE|PRE|TEXTAREA|CODE)$/.test(node.tagName)) return;
+    for (const attr of attrNames) {
+      const value = node.getAttribute(attr);
+      if (value) { const localized = translate(value); if (localized !== value) node.setAttribute(attr, localized); }
+    }
+    for (const child of node.childNodes) translateNode(child);
+  }
+
+  window.FarmBookSinhala = { translate };
+  const nativeAlert = window.alert.bind(window), nativeConfirm = window.confirm.bind(window);
+  window.alert = (message) => nativeAlert(translate(message));
+  window.confirm = (message) => nativeConfirm(translate(message));
+  document.documentElement.lang = 'si-LK';
+  translateNode(document.body);
+  new MutationObserver((records) => {
+    for (const record of records) {
+      if (record.type === 'childList') record.addedNodes.forEach(translateNode);
+      else if (record.type === 'characterData') translateNode(record.target);
+      else if (record.type === 'attributes') translateNode(record.target);
+    }
+  }).observe(document.body, { subtree: true, childList: true, characterData: true, attributes: true, attributeFilter: attrNames });
+})();
