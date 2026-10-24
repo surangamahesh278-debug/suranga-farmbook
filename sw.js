@@ -1,4 +1,4 @@
-const CACHE_NAME = 'suranga-farmbook-v23';
+const CACHE_NAME = 'suranga-farmbook-v43';
 const APP_FILES = [
   './',
   './index.html',
@@ -10,7 +10,20 @@ const APP_FILES = [
   './manifest.json',
   './icon.svg',
   './icon-192.png',
-  './icon-512.png'
+  './icon-512.png',
+  './assets/hero-rice-field.jpg',
+  './assets/crop-chilli.jpg',
+  './assets/crop-tomato.jpg',
+  './assets/crop-generic.jpg',
+  './assets/crop-banana.jpg',
+  './assets/crop-cucumber.jpg',
+  './assets/crop-bitter-gourd.jpg',
+  './assets/crop-ridge-gourd.jpg',
+  './assets/crop-radish.jpg',
+  './assets/crop-capsicum.jpg',
+  './assets/crop-pumpkin.jpg',
+  './assets/crop-papaya.png',
+  './assets/farmers-sunset.jpg'
 ];
 
 const appUrl = (path) => new URL(path, self.registration.scope).href;

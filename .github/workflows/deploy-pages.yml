@@ -30,7 +30,8 @@ jobs:
       - name: Prepare Pages files
         run: |
           mkdir -p _site
-          cp index.html styles.css app.js sync.js supabase-config.js manifest.json sw.js icon.svg icon-192.png icon-512.png _site/
+          cp index.html styles.css si.js app.js sync.js supabase-config.js manifest.json sw.js icon.svg icon-192.png icon-512.png _site/
+          cp -R assets _site/assets
       - name: Upload FarmBook root app files
         uses: actions/upload-pages-artifact@v4
         with:
